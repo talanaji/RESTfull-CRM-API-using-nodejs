@@ -17,7 +17,11 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 
+routes(app);
+
+//serving static files 
+app.use(express.static('public'));
+
 app.get("/", (req, res) => res.send(`Node & express running on port ${port}`));
 
-routes(app);
 app.listen(port, () => console.log(`your server running on port ${port}`));
