@@ -5,7 +5,6 @@ import bodyParser from 'body-parser';
 
 const app = express();
 const port = 3000;
-routes(app);
 //mongoose connection 
 mongoose.Promise=global.Promise;
 mongoose.connect('mongodb://localhost/CRMdb',{
@@ -14,9 +13,11 @@ mongoose.connect('mongodb://localhost/CRMdb',{
 }).then(() => console.log('MongoDB Connected...'))
 .catch((err) => console.log(err));
 //body parser setup
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 
 app.get("/", (req, res) => res.send(`Node & express running on port ${port}`));
+
+routes(app);
 app.listen(port, () => console.log(`your server running on port ${port}`));
